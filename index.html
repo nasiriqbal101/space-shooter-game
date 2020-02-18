@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link >
+</head>
+<body>
+    <div id="background">
+        <div id="hero"></div>
+        <div id="enemy"></div>
+    </div>
+
+    <script>
+
+        let hero = {
+            top: 500,
+            left: 500
+        }
+        document.onkeydown = function(e) {
+            console.log(e);
+            if(e.keyCode === 37){
+                console.log("LEFT");
+                hero.left = hero.left - 25;
+                moveHero();
+            }
+            else if (e.keyCode === 39){
+                console.log("RIGHT");
+                hero.left = hero.left + 15;
+                moveHero();
+            }
+
+            function moveHero() {
+                document.getElementById('hero').style.left = hero.left + "px";
+               
+            }
+            
+        }
+    </script>
+</body>
+</html>
