@@ -22,6 +22,8 @@ body {
   height: 50px;
   width: 50px;
   position: absolute;
+  top: 100px;
+  left: 500px;
 }
 
 #background #missiles {
@@ -30,16 +32,12 @@ body {
   position: absolute;
 }
 
-#background .missile {
+#background #missile {
   background-image: url("assets/missile1.png");
-  height: 16px;
+  background-repeat: no-repeat;
+  height: 20px;
   width: 10px;
-  position: absolute;
-}
-
-#background #enemies {
-  height: 100vh;
-  width: 100vw;
+  border: 1px solid red;
   position: absolute;
 }
 /*# sourceMappingURL=style.css.map */
