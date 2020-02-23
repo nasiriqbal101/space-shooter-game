@@ -25,6 +25,7 @@ body {
         left: 500px;
         }
      
+        //missile to go inside this box
      #missiles {
         height: 100vh;
         width: 100vw;
@@ -33,7 +34,7 @@ body {
 
      }   
 
-    #missile {
+    .missile {
         background-image: url("assets/missile1.png");
         background-repeat: no-repeat;
         height: 20px;
@@ -54,4 +55,4 @@ body {
     //  }   
 
     
-    }
+}
