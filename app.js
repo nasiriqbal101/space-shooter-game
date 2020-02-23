@@ -11,7 +11,7 @@ const heroElement = document.getElementById("hero");
 
 
 //to know where everysingle missile is 
-let missile = [];
+let missiles = [];
 
 //in order to move the ship, it is important to know where the ship.
 //so created an object  called hero, and given it the name and value.
@@ -70,10 +70,11 @@ document.onkeydown = e => {
     }
 
     const drawMissiles = () => {
-        alert('drawMissles invoked');
+        
     document.getElementById('missiles').innerHTML = "";
-    for ( let missile = 0; missile < missiles.lenght; missile =
+    for ( let missile = 0; missile < missiles.length; missile =
         missile + 1) {
+          
             document.getElementById('missiles').innerHTML +=
             `<div class='missile' style='left:${missiles[missile].left}px;
             top:${missiles[missile].top}px;'> </div>`;

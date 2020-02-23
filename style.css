@@ -32,7 +32,7 @@ body {
   position: absolute;
 }
 
-#background #missile {
+#background .missile {
   background-image: url("assets/missile1.png");
   background-repeat: no-repeat;
   height: 20px;
