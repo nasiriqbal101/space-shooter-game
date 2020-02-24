@@ -69,6 +69,9 @@ document.onkeydown = e => {
         document.getElementById('hero').style.left = hero.left + "px";
     }
 
+
+//this function is simpley grab the above missile aray and
+//draw them
     const drawMissiles = () => {
         
     document.getElementById('missiles').innerHTML = "";
@@ -82,5 +85,12 @@ document.onkeydown = e => {
 
      }
 
+     
+
+     gameLoop = () => {
+         setTimeout(gameLoop, 1000)
+        //  console.log("Game loop")
+     }
+     gameLoop();
 
 }
