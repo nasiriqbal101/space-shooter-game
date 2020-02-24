@@ -72,8 +72,7 @@ document.onkeydown = e => {
 
 //this function is simpley grab the above missile aray and
 //draw them
-    const drawMissiles = () => {
-        
+    const drawMissiles = () => {   
     document.getElementById('missiles').innerHTML = "";
     for ( let missile = 0; missile < missiles.length; missile =
         missile + 1) {
@@ -85,7 +84,11 @@ document.onkeydown = e => {
 
      }
 
-     
+     moveMissiles = () => {
+         for (let missile = 0; missile < missiles.length; missile = missile + 1){
+            missiles[missile].top = missiles[missile].top -5;
+         }
+     }
 
      gameLoop = () => {
          setTimeout(gameLoop, 1000)
