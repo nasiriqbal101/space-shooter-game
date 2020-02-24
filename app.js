@@ -13,6 +13,19 @@ const heroElement = document.getElementById("hero");
 //to know where everysingle missile is 
 let missiles = [];
 
+let enemies = [
+    { left: 300, top: 50},
+    { left: 400, top: 50},
+    { left: 500, top: 50},
+    { left: 600, top: 50},
+    { left: 700, top: 50},
+    { left: 300, top: 110},
+    { left: 400, top: 110},
+    { left: 500, top: 110},
+    { left: 600, top: 110},
+    { left: 700, top: 110},
+]
+
 //in order to move the ship, it is important to know where the ship.
 //so created an object  called hero, and given it the name and value.
 //the given property would indicante the missile position
@@ -90,9 +103,32 @@ document.onkeydown = e => {
          }
      }
 
+     drawEnemies = () => {
+         document.getElementById('enemies').innerHTML ="";
+         for ( let enemy = 0; enemy < enemies.length; enemy =
+            enemy + 1) {
+            document.getElementById('enemies').innerHTML +=
+            `<div class='enemy' style='left:${enemies[enemy].left}px;
+            top:${enemies[enemy].top}px;'> </div>`;
+            }
+    
+         }
+
+    moveEnemies = () => {
+        for (let enemy = 0; enemy < enemies.length; enemy = enemy + 1){
+            enemies[enemy].top = enemies[enemy].top + 3;
+            }
+        }    
+     
+
+     //mili seconds, 100
      gameLoop = () => {
-         setTimeout(gameLoop, 1000)
+         setTimeout(gameLoop, 100)
         //  console.log("Game loop")
+        drawMissiles();
+        moveMissiles();
+        drawEnemies();
+        moveEnemies();
      }
      gameLoop();
 
