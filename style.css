@@ -14,7 +14,7 @@ body {
   width: 50px;
   position: absolute;
   top: 500px;
-  left: 500px;
+  left: 550px;
 }
 
 #background .enemy {
@@ -35,7 +35,6 @@ body {
   background-repeat: no-repeat;
   height: 20px;
   width: 10px;
-  border: 1px solid red;
   position: absolute;
 }
 

@@ -1,58 +1,44 @@
 body {
-    overflow: hidden;
+  overflow: hidden;
 }
+#background {
+  background-image: url("assets/space.jpg");
+  height: 100vh;
+  width: 100vw;
 
-#background { 
-    background-image: url('assets/space.jpg');
+  #hero {
+    background-image: url("assets/hero.png");
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 500px;
+    left: 550px;
+  }
+
+  .enemy {
+    background-image: url("assets/enemy.png");
+    height: 50px;
+    width: 50px;
+    position: absolute;
+  }
+
+  #missiles {
     height: 100vh;
     width: 100vw;
+    position: absolute;
+  }
 
-    #hero {
-        background-image: url("assets/hero.png");
-        height: 50px;
-        width: 50px;
-        position: absolute;
-        top: 500px;
-        left: 500px;
-    }
-      
-    .enemy {
-        background-image: url("assets/enemy.png");
-        height: 50px;
-        width: 50px;
-        position: absolute;
-        // top: 100px;
-        // left: 500px;
-        }
-     
-        //missile to go inside this box
-     #missiles {
-        height: 100vh;
-        width: 100vw;
-        position: absolute;
-        
+  .missile {
+    background-image: url("assets/missile1.png");
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 10px;
+    position: absolute;
+  }
 
-     }   
-
-    .missile {
-        background-image: url("assets/missile1.png");
-        background-repeat: no-repeat;
-        height: 20px;
-        width: 10px;
-        border: 1px solid red;;
-        position: absolute; 
-
-        
-      
-      }
-
-      #enemies {
-        height: 100vh;
-        width: 100vw;
-        position: absolute;
-        
-
-     }   
-
-    
+  #enemies {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+  }
 }

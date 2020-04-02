@@ -1,135 +1,120 @@
 window.onload = () => {
 
-// console.log("connected");
+    const heroElement = document.getElementById("hero");
+    
+    //to know where everysingle missile is 
+    let missiles = [];
 
-const heroElement = document.getElementById("hero");
-// console.log(heroElement);
-// const enemyElement = document.getElementsByClassName("enemy");
-// console.log(enemyElement);
-// const missilesElement = document.getElementById("missiles");
-// console.log(missilesElement);
+    let enemies = [
+        { left: 300, top: 50 },
+        { left: 400, top: 50 },
+        { left: 500, top: 50 },
+        { left: 600, top: 50 },
+        { left: 700, top: 50 },
+        { left: 300, top: 110 },
+        { left: 400, top: 110 },
+        { left: 500, top: 110 },
+        { left: 600, top: 110 },
+        { left: 700, top: 110 },
+    ]
 
+    const hero = {
+        left: 550,
+        top: 450
+    };
 
-//to know where everysingle missile is 
-let missiles = [];
+    document.onkeydown = e => {
+        e.preventDefault();
+        // console.log(e);
 
-let enemies = [
-    { left: 300, top: 50},
-    { left: 400, top: 50},
-    { left: 500, top: 50},
-    { left: 600, top: 50},
-    { left: 700, top: 50},
-    { left: 300, top: 110},
-    { left: 400, top: 110},
-    { left: 500, top: 110},
-    { left: 600, top: 110},
-    { left: 700, top: 110},
-]
+        if (e.keyCode === 37) {
+            hero.left -= 20;
+            heroElement.style.left = hero.left + "px";
+            moveHero();
+        }
+        else if (e.keyCode === 39) {
+            // console.log("right");
+            hero.left += 20;
+            heroElement.style.left = hero.left + "px";
+            moveHero();
 
-//in order to move the ship, it is important to know where the ship.
-//so created an object  called hero, and given it the name and value.
-//the given property would indicante the missile position
-const hero = {
-    left: 550,
-    top: 450
-};
-
-// document is an object that is to do things like .onkeydown.
-//below little block of code allows  to chekc this thing e., e is a varialble
-//any key is pressed on keybaord this little block will run
-//the onkeydown event is fired only once, when a key is pressed down.
-// To get the pressed key, use the keyCode
-document.onkeydown = e => {
-    e.preventDefault();
-    // console.log(e);
-
-    if (e.keyCode === 37) {
-        console.log("left");
-        // console.log(heroElement.style.left);
-        // remove the px from the .style.left when you get it
-        // then - 20
-        // then set it back with px on the end
-        hero.left = hero.left -20;
-        heroElement.style.left = hero.left + "px";
-        moveHero();
+        }
+        else if (e.keyCode === 32) {
+            // console.log("fire")
+            missiles.push({
+                left: hero.left + 15,
+                top: hero.top
+            })
+            drawMissiles()
+            // console.log(missiles);
+        }
     }
-    else if (e.keyCode === 39) { 
-        console.log("right");
-        hero.left = hero.left +20;
-        heroElement.style.left = hero.left + "px";
-        moveHero();
-
-    }
-    else if (e.keyCode === 32) {
-        console.log("fire")
-        //addding an object to push method, so it will indicate position 
-        //of missile when release
-        //give the same location as hero but added 15 to left
-        //so the missile draw and move from the begining of the hero position
-        missiles.push({
-            left: hero.left + 15,
-            top: hero.top
-           
-        })
-      
-        drawMissiles()
-        // console.log(missiles);
-     }
-
-    }
-
     const moveHero = () => {
         document.getElementById('hero').style.left = hero.left + "px";
     }
 
+    const drawMissiles = () => {
+        document.getElementById('missiles').innerHTML = "";
+        for (let missile = 0; missile < missiles.length; missile += 1) {
 
-//this function is simpley grab the above missile aray and
-//draw them
-    const drawMissiles = () => {   
-    document.getElementById('missiles').innerHTML = "";
-    for ( let missile = 0; missile < missiles.length; missile =
-        missile + 1) {
-          
             document.getElementById('missiles').innerHTML +=
-            `<div class='missile' style='left:${missiles[missile].left}px;
+                `<div class='missile' style='left:${missiles[missile].left}px;
             top:${missiles[missile].top}px;'> </div>`;
         }
+    }
 
-     }
+    moveMissiles = () => {
+        for (let missile = 0; missile < missiles.length; missile = missile + 1) {
+            missiles[missile].top = missiles[missile].top - 5;
+        }
+    }
 
-     moveMissiles = () => {
-         for (let missile = 0; missile < missiles.length; missile = missile + 1){
-            missiles[missile].top = missiles[missile].top -5;
-         }
-     }
-
-     drawEnemies = () => {
-         document.getElementById('enemies').innerHTML ="";
-         for ( let enemy = 0; enemy < enemies.length; enemy =
+    drawEnemies = () => {
+        document.getElementById('enemies').innerHTML = "";
+        for (let enemy = 0; enemy < enemies.length; enemy =
             enemy + 1) {
             document.getElementById('enemies').innerHTML +=
-            `<div class='enemy' style='left:${enemies[enemy].left}px;
+                `<div class='enemy' style='left:${enemies[enemy].left}px;
             top:${enemies[enemy].top}px;'> </div>`;
-            }
-    
-         }
+        }
+    }
 
     moveEnemies = () => {
-        for (let enemy = 0; enemy < enemies.length; enemy = enemy + 1){
-            enemies[enemy].top = enemies[enemy].top + 3;
-            }
-        }    
-     
+        let value = 5
+        if (enemies[0].top >= 300) {
+            value = 3
+        }
+        for (let enemy = 0; enemy < enemies.length; enemy += 1) {
+            enemies[enemy].top = enemies[enemy].top + value;
+        }
+    }
 
-     //mili seconds, 100
-     gameLoop = () => {
-         setTimeout(gameLoop, 100)
+    collisionDetection = () => {
+        for (let enemy = 0; enemy < enemies.length; enemy += 1) {
+            for (let missile = 0; missile < missiles.length; missile += 1) {
+                // alert("hay")
+                if (
+                    (missiles[missile].top <= enemies[enemy].top + 50) &&
+                    (missiles[missile].top >= enemies[enemy].top) &&
+                    (missiles[missile].left >= enemies[enemy].left) &&
+                    (missiles[missile].left <= enemies[enemy].left + 50)
+
+                ) {
+                    enemies.splice(enemy, 1);
+                    missiles.splice(missile, 1);
+                }
+            }
+        }
+    }
+    //mili seconds, 100
+    gameLoop = () => {
+        setTimeout(gameLoop, 50)
         //  console.log("Game loop")
         drawMissiles();
         moveMissiles();
         drawEnemies();
         moveEnemies();
-     }
-     gameLoop();
-
+        collisionDetection();
+    }
+    gameLoop();
 }
