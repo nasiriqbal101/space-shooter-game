@@ -82,7 +82,7 @@ window.onload = () => {
     moveEnemies = () => {
         let value = 5
         if (enemies[0].top >= 300) {
-            value = 3
+            value = 0
         }
         for (let enemy = 0; enemy < enemies.length; enemy += 1) {
             enemies[enemy].top = enemies[enemy].top + value;
